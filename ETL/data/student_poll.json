@@ -1,0 +1,28 @@
+[
+  {
+    "grade": "freshman",
+    "TA": false,
+    "degree": "Software Engineering",
+    "gender": "N",
+    "professor_traits": [
+      "passion", "knowledge", "honest", "caring", "technology"],
+    "peer_traits": [
+      "honest", "hard working", "determined", "intelligent", "technology"],
+    "working": false,
+    "GPA": 3.1,
+    "add_anything": ""
+  },
+  {
+    "grade": "sophmore",
+    "TA": false,
+    "degree": "Civil Engineering",
+    "gender": "F",
+    "professor_traits": [
+      "knowledge", "experience", "intelligent", "caring", "group tasks"],
+    "peer_traits": [
+      "intelligent", "determined", "healthy", "creative", "caring"],
+    "working": false,
+    "GPA": 3.7,
+    "add_anything": ""
+  }
+]
