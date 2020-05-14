@@ -17,7 +17,7 @@ class FileParser(ABC):
 
     @property
     def directory(self):
-        return self.__data_dir.toString()
+        return self.__data_dir
 
     @directory.setter
     def directory(self, directory: str):
