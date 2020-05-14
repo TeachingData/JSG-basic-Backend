@@ -23,7 +23,7 @@ The content of any data used within projects
 themselves is licensed under the 
 [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/) and has been entered by random answering of questions (its fake data).
 While the source code of any script or program 
-is licensed under the [MIT license](LICENSE.md).
+is licensed under the [MIT license](license.md).
 
 <small> 
 
