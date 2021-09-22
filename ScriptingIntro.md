@@ -18,9 +18,10 @@ The main idea behind creating a shell script is to either lessen the load of the
     $info | Format-List *
 
 While in most \*nix systems we'd use:
+    
     tidy -xml -iq test.xml
-
- Suppose we have to use arguments in a particular script then we just need to create a shell script starting from #!/bin/bash and then echo the text you want to print by parameterizing with a $ sign. The number of arguments can be written in the form of $1, $2 and so on.
+    
+Either of these could be a great help to a developer trying to understand some new XML file a client provided or be **piped** into another script for further parsing and automatic uploading to a database. **Scripting is the glue that holds systems together.**
 
 ## Basic Shell Scripting Commands
 On Linux you can get more infomation using ***\<command \-\-help\>*** and in Powershell using ***Get-Help \<command\>***. The basic shell scripting commands are:
@@ -90,6 +91,7 @@ So these are ran together often enough. cd changes your directory (**. = current
 
 #### Mkdir: Makes a directory
 Same on both again: makes a directory with default permissions (and current user as owner). 
+
     cd /home
     mkdir Sam
     cd Sam
@@ -97,6 +99,7 @@ Same on both again: makes a directory with default permissions (and current user
 
 #### CP, MV, Rename & Rename-Item: Basic file controls
 As we are using a command-line: copy, move, and rename are a bit different. Copy is essentially the same (it makes a copy of the original file). However, move (think cut) deletes the original and makes a new copy of the file whereas rename just changes the file name. So many times you'll use ***mv*** over ***rename*** because you just want to recreate the file (you use rename to keep permissions and owner the same).
+
     # both systems
     cp ./test.txt ./test1.txt # make copy of file
     mv test.txt testing.txt #cut and paste file (original gone)
@@ -151,7 +154,7 @@ When it comes to automation, the ability to redirect output (pipe it) is essenti
 
 In Powershell, you cannot redirect pure strings (literally `Write-Output or "Hello World"`). See Piping for how to perform this.
 
-/*
+<!--
 #### redirecting input
 `<` is used to **redirect input**.
 
@@ -196,7 +199,7 @@ Output:
     great!
 
 Add this later
-*/
+-->
 
 #### Piping ( | ): Pass the output received from one command to another command or script. 
 So this is the scripting equivilent of *chaining*, that fun task where we passed information from one command to another (like a builder class: ```Build b = Build.create().withParameterA("A").withParameterB(2);```). In fact, with Powershell its the only way to redirect direct strings to files without having to deal with Array conversions using two cmdlets:
