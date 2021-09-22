@@ -15,7 +15,7 @@ Scripting is providing a set of commands to the shell for it to execute. **It is
   - other programming languages (Python, C#, Perl)
   - sub-languages as part of an executable (awk, sed, grep)
   
-The main idea behind creating a shell script is to either lessen the load of the client or automate tasks the system needs to perform. For example, to make an xml file more readable (in Powershell) we might:
+The main idea behind creating a shell script is to either **lessen the load** of the client or **automate tasks** the system needs to perform. For example, to make an xml file more readable (in Powershell) we might:
 
     [xml] $info = Get-Content test.xml
     $info | Format-List *
@@ -38,7 +38,8 @@ On Linux you can get more infomation using ***\<command \-\-help\>*** and in Pow
     #Powershell
     Write-Host "Hello World"
 
-Used by itself it just prints a blank line and it can be used with a variable (note $):
+Note, if Echo/Write-Host is used by itself it will just print a blank line. We can also use it with a variable as follows (note $ placement):
+
     #bash
     test="Hello" # no $ in assignment
     echo "$test World"
@@ -58,11 +59,10 @@ Frequently, used with pipes to pass contents of file between cmdlets/executables
 Grep (and egrep) can have their own class. Select-String is Powershell's "equiv" but its not quite equal. As a basic intro: it searches files for a provided string or pattern (Regex).
 
     #Search for any instance of "test in txt files"
-    #bash (case-sensitive)
+    #bash (case-sensitive) use -i flag to ignore case
     grep "test" ./*.txt
     > This is a test
     > A test this is
-    # grep -i "test" ./*.txt # -i will ignore case in search
 
     #PowerShell (not case-sensitive)
     Select-String -Path "./*.txt" -Pattern "test"
@@ -123,14 +123,20 @@ As we are using a command-line: copy, move, and rename are a bit different. Copy
 ## Intermediate Commands
 
 ### sudo / su
-No real powershell equivilent (can use *-RunAs* flag but its not the same).
+No real powershell equivilent (can use *-RunAs* flag but its not the same). SU is just switch user - use it to change to different login. SUDO **runs a single command with admin permisions**. It doesn't have an equivilent on Windows (one can open Powershell "as admin") but you can use `-Verb runas` for a close approximation.
+
+    #Linux
+    sudo netstat -ab
+    
+    #Powershell as close as you can (it opens a new window)
+    Start-Process netstat -ArgumentList "-ab" -Verb runas
 
 ### Ifconfig: Change to IP?
 Tuning and debuging of network....add IP
 
 ### Netstat: Displays general network information
 Can be used to display:
- - routing tables
+ - routing tables (can also use `route PRINT`)
  - network connections
  - masquerade connections
  - interface statistics
@@ -216,11 +222,20 @@ So this is the scripting equivilent of *chaining*, that fun task where we passed
     "Hello" | Set-Content -encoding UTF8 test.txt # we can also add encoding and should
     " World" | Add-Content -endoding UTF8 test.txt # only appended
 
-You can also use them in automation tasks and parsing, such as finding all instances of *john 2ndword* in a file and then processing those instances to categorize the word after john.
+You can also use them in automation tasks and parsing, such as finding all instances of *john 2ndword* in a file and then processing those instances to *categorize the word after john*.
+
     # -i = ignore case, -o = only words; xargs = make array into arguments
     # ./ = path to script (assumes shebang and executable permissions set)
     grep -io "john .*" ./*.txt | xargs ./parse_users.py
+    ------------------------------------
+    # Where parse_users.py contains
+    ------------------------------------
+    #!/usr/bin/python3.6
+    import sys
 
+    if __name__ == "__main__":
+      for i, arg in enumerate(sys.argv):
+        print(f"ARG: {i:>2}: {arg}")
 ---
 ---
 # Summary
