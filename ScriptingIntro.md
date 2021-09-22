@@ -5,8 +5,11 @@ When I began my career the operating systems of the time where UNIX and Dos (Win
 
 As \*nix systems remain the top choice in servers and networking, understanding their **shell** has remained an important factor for IT, IS, and Networking professionals. Even for Windows systems (MS Servers) the *ability to automate tasks with Powershell* is considered an essiential skill. This article, part of an Intro to Networking class, we will overview the shell scripting commands most used in Powershell and bash (standard Linux Shell) - full coverage is provided in the "Scripting" course.
 
+---
+---
+
 ## What is Scripting?
-Scripting is providing a set of commands to the shell for it to execute. These commands can be:
+Scripting is providing a set of commands to the shell for it to execute. **It is the glue that holds systems together.** These commands can be:
   - in the shell's language
   - executables built-in to the kernel
   - other programming languages (Python, C#, Perl)
@@ -21,12 +24,14 @@ While in most \*nix systems we'd use:
     
     tidy -xml -iq test.xml
     
-Either of these could be a great help to a developer trying to understand some new XML file a client provided or be **piped** into another script for further parsing and automatic uploading to a database. **Scripting is the glue that holds systems together.**
+Either of these could be a great help to a developer trying to understand some new XML file a client provided or be **piped** into another script for further parsing and automatic uploading to a database. 
+
+---
 
 ## Basic Shell Scripting Commands
 On Linux you can get more infomation using ***\<command \-\-help\>*** and in Powershell using ***Get-Help \<command\>***. The basic shell scripting commands are:
 
-#### Echo / Write-Host commands: Used for console display
+### Echo / Write-Host commands: Used for console display
     #bash
     echo "Hello World"
 
@@ -44,12 +49,12 @@ Used by itself it just prints a blank line and it can be used with a variable (n
     Write-Host "$test World"
     Write-Host
 
-#### Cat: Show contents of a file
+### Cat: Show contents of a file
     # This is the same in bash/Powershell (aliased to Get-Content)
     cat filename.txt
 Frequently, used with pipes to pass contents of file between cmdlets/executables or as quick check of file.
 
-#### Grep / Select-String: Search text for pattern
+### Grep / Select-String: Search text for pattern
 Grep (and egrep) can have their own class. Select-String is Powershell's "equiv" but its not quite equal. As a basic intro: it searches files for a provided string or pattern (Regex).
 
     #Search for any instance of "test in txt files"
@@ -77,10 +82,10 @@ Grep (and egrep) can have their own class. Select-String is Powershell's "equiv"
 
 For more see [Digital Ocean's guide of Grep](https://www.digitalocean.com/community/tutorials/using-grep-regular-expressions-to-search-for-text-patterns-in-linux). 
 
-#### ls: List folder and files in directory
+### ls: List folder and files in directory
 This command is the same in PowerShell or \*nix. It lists the folders and files present in a particular directory (either current or provided path). Powershell's **ls** is actually `ls -l` (long list: i.e. include details) in \*nix.
 
-#### pwd & cd: Find Path and Change Directory
+### pwd & cd: Find Path and Change Directory
 So these are ran together often enough. cd changes your directory (**. = current directory, .. = parent directory**) and pwd prints it out. Again, these are the same in both Linux and Powershell and would look like:
 
     # Assuming in /Users
@@ -89,7 +94,7 @@ So these are ran together often enough. cd changes your directory (**. = current
     cd Users/Sam #change to this directory/sub-directory
     pwd # would print /Users/Sam
 
-#### Mkdir: Makes a directory
+### Mkdir: Makes a directory
 Same on both again: makes a directory with default permissions (and current user as owner). 
 
     cd /home
@@ -97,7 +102,7 @@ Same on both again: makes a directory with default permissions (and current user
     cd Sam
     pwd # would print /home/Sam
 
-#### CP, MV, Rename & Rename-Item: Basic file controls
+### CP, MV, Rename & Rename-Item: Basic file controls
 As we are using a command-line: copy, move, and rename are a bit different. Copy is essentially the same (it makes a copy of the original file). However, move (think cut) deletes the original and makes a new copy of the file whereas rename just changes the file name. So many times you'll use ***mv*** over ***rename*** because you just want to recreate the file (you use rename to keep permissions and owner the same).
 
     # both systems
@@ -117,13 +122,13 @@ As we are using a command-line: copy, move, and rename are a bit different. Copy
 
 ## Intermediate Commands
 
-#### sudo / su
+### sudo / su
 No real powershell equivilent (can use *-RunAs* flag but its not the same).
 
-#### Ifconfig: Change to IP?
+### Ifconfig: Change to IP?
 Tuning and debuging of network....add IP
 
-#### Netstat: Displays general network information
+### Netstat: Displays general network information
 Can be used to display:
  - routing tables
  - network connections
@@ -131,16 +136,16 @@ Can be used to display:
  - interface statistics
  - even more
 
-#### Nslookup: Displays the information of servers. 
+### Nslookup: Displays the information of servers. 
 Queries DNS and fetches information (ip address).
 
-#### Uptime / Get-Uptime: Gives the uptime of server
+### Uptime / Get-Uptime: Gives the uptime of server
 Whenever server is left unattended this can be queried (ran) to determine if any downtime happened. Easy to automate by just redirecting (see below) to a log which is periodically checked.
 
 ## Piping and Redirects
 When it comes to automation, the ability to redirect output (pipe it) is essential. There are several variants on piping but it can be considered as the *couts, System.out, or other file operations* dealt with in most programming languages. The following are the main **pipes**.
 
-#### redirecting output
+### redirecting output
 `>` is used to **redirect output** and ***write*** *it to a file*.
 
 `>>` is used to **redirect output** and ***append*** *it to the end of a file*.
@@ -155,7 +160,7 @@ When it comes to automation, the ability to redirect output (pipe it) is essenti
 In Powershell, you cannot redirect pure strings (literally `Write-Output or "Hello World"`). See Piping for how to perform this.
 
 <!--
-#### redirecting input
+### redirecting input
 `<` is used to **redirect input**.
 
     $ cat < file.txt
@@ -201,7 +206,7 @@ Output:
 Add this later
 -->
 
-#### Piping ( | ): Pass the output received from one command to another command or script. 
+### Piping ( | ): Pass the output received from one command to another command or script. 
 So this is the scripting equivilent of *chaining*, that fun task where we passed information from one command to another (like a builder class: ```Build b = Build.create().withParameterA("A").withParameterB(2);```). In fact, with Powershell its the only way to redirect direct strings to files without having to deal with Array conversions using two cmdlets:
 
 `Set-Content` is used to **redirect output** and ***write*** *it to a file*.
@@ -215,3 +220,8 @@ You can also use them in automation tasks and parsing, such as finding all insta
     # -i = ignore case, -o = only words; xargs = make array into arguments
     # ./ = path to script (assumes shebang and executable permissions set)
     grep -io "john .*" ./*.txt | xargs ./parse_users.py
+
+---
+---
+# Summary
+Scripting is a complex subject, and includes learning several languages, so though we cannot introduce a subject complete in such a small space. This should provide a basic overview of the main scripting commands and methods we will be using in (most of) your courses.
