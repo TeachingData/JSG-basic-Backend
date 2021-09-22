@@ -27,6 +27,7 @@ While in most \*nix systems we'd use:
 Either of these could be a great help to a developer trying to understand some new XML file a client provided or be **piped** into another script for further parsing and automatic uploading to a database. 
 
 ---
+---
 
 ## Basic Shell Scripting Commands
 On Linux you can get more infomation using ***\<command \-\-help\>*** and in Powershell using ***Get-Help \<command\>***. The basic shell scripting commands are:
@@ -120,6 +121,8 @@ As we are using a command-line: copy, move, and rename are a bit different. Copy
     Rename-Item testing.txt test.txt
     # Can specify with: Rename-Item -Path "./testing.txt" -NewName "test.txt"
 
+---
+---
 ## Intermediate Commands
 
 ### sudo / su
@@ -148,6 +151,7 @@ Queries DNS and fetches information (ip address).
 ### Uptime / Get-Uptime: Gives the uptime of server
 Whenever server is left unattended this can be queried (ran) to determine if any downtime happened. Easy to automate by just redirecting (see below) to a log which is periodically checked.
 
+---
 ## Piping and Redirects
 When it comes to automation, the ability to redirect output (pipe it) is essential. There are several variants on piping but it can be considered as the *couts, System.out, or other file operations* dealt with in most programming languages. The following are the main **pipes**.
 
