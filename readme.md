@@ -1,15 +1,12 @@
-# Basic-ETL
+# Basic-Backend
 
-This is an example final project of a local ETL process. As an intro & undergrad
-class this does not include network operations that would typically be expected and this version does not include NoSQL systems. It starts with building Tests (TDD) and then progresses through:
+Before students could be introduced to the actual ETL (Extract-Transfer-Load) process, it was nesscary to introduce backend engineering work. This contains both an overview of scripting techniques and some specific tools for processing *"standard"* files and an example project of standard serialization using json. As an intro & undergrad
+class this does not include network operations that would typically be expected nor NoSQL systems (these are covered in a seperate section). It starts with building Tests (TDD), full mock systems are found in a different course, and then progresses through:
 - Checking a directory for files
 - Processing the files in the directory based on their extension
   - This example includes a parallel processing option (this was not required)
   - Standard Parsing (remove empty lines and performs basic validation)
-    - Text Files include very basic NLP operation (nGram & regex matching)
 - Loads data to an included SQLite database
-  - This was used to explain the limitations of ACID for analysis
-  - Seperate version with MongoDB is included in its own Repository
 - Performs standard SQL analysis (using aggregated functions and group by)
 - Performs Rule Based Analysis (Affinity Analysis and Proability of event)
 
