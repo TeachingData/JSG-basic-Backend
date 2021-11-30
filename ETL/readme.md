@@ -6,4 +6,6 @@ This application is a template used by students to create their own parsers in a
 
 Students would then create the XML and CSV parsers using this example and other data.
 
+The data notes explain the "schema" of the data.
+
 Licensed under MIT.
